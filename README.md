@@ -1,2 +1,2 @@
-data-parliament-ap
+data-parliament-api
 ==================
