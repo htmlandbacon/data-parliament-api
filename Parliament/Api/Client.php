@@ -59,9 +59,7 @@ class Client
         if (!empty($params)) {
             $options[CURLOPT_URL].= '?' . http_build_query($params, null, '&');
         }
-
-        echo $options[CURLOPT_URL];
-
+        
         curl_setopt_array($ch, $options);
         $result = curl_exec($ch);
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);

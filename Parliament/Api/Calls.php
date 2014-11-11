@@ -100,6 +100,38 @@ class Calls extends Client
 	 * @todo Commons Divisions
 	 */
 
+    /**
+     * Returns details for a Commons Divisions
+     * @param  integer page_numer - specifeid page number i.e 
+     * @param  integer page_size 
+     * @param  array other_args - takes other search types
+     * @param  string view_type - controls how much data is returned
+     * @return object
+     */
+	public function getCommonsDivisions($page_number=null, $page_size=10,$other_args=null,$view_type = "description")
+	{
+		$args = array('_pageSize' => $page_size);
+		$args['_view'] = $view_type;
+		if($page_number!=null){ $args['_page'] = $page_number;	}
+		if($other_args!=null){	$args = array_merge($args,$other_args);	}
+  		return $this->makeRequest('commonsdivisions',$args);
+	}
+
+    /**
+     * Returns details for a Commons Divisions by specified by ID.
+     *
+     * @param  integer $id
+     * @param  string view_type - sets the detail level - default to all
+     * @return object
+     */
+	public function getCommonsDivisionById($id,$view_type="all")
+	{
+		$args = array('view' => $view);
+  		return $this->makeRequest('commonsdivisions/id/'.$id);
+	}
+
+
+
 	/**
 	 * @todo Commons Written Questions
 	 */
@@ -132,6 +164,7 @@ class Calls extends Client
      * Returns details for a commons members.
      * @param  integer page_numer - specifeid page number i.e 
      * @param  integer page_size 
+     * @param  string view_type - sets the detail level - default to basic
      * @return object
      */
 	public function getCommonsMembers($page_number=null, $page_size=10, $view_type = "basic")
@@ -150,6 +183,7 @@ class Calls extends Client
      * Returns details for a Lords members.
      * @param  integer page_numer - specifeid page number i.e 
      * @param  integer page_size 
+     * @param  string view_type - sets the detail level - default to basic
      * @return object
      */
 	public function getLordsMembers($page_number=null, $page_size=10, $view_type = "basic")
